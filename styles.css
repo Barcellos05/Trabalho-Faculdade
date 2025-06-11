@@ -1,0 +1,219 @@
+/* Reset básico */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #f5faf6;
+  color: #222;
+  margin: 15;
+  padding-top: 300px; /* altura suficiente para o header */
+}
+
+/* Cabeçalho fixo */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #1e3a5f;
+  color: white;
+  padding: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  
+}
+
+header h1 {
+  font-family: 'Merriweather', serif;
+  font-weight: 100;
+  margin: 0;
+  font-size: 1rem;
+}
+
+header .group-name {
+  font-style: italic;
+  font-size: 1rem;
+  opacity: 0.8;
+  margin-left: 15px;
+}
+
+/* Navegação principal */
+nav {
+  margin-top: 10px;
+  width: 100%;
+  text-align: center;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;
+  max-width: 700px;
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  flex-wrap: wrap;
+}
+
+nav ul li {
+  cursor: pointer;
+  font-weight: 600;
+  padding: 8px 15px;
+  border-radius: 6px;
+  transition: background-color 0.3s, color 0.3s;
+  color: #a8c0e6;
+}
+
+nav ul li.active,
+nav ul li:hover {
+  background-color: #4a6fa5;
+  color: #fff;
+}
+
+/* Conteúdo principal */
+main {
+  max-width: 900px;
+  margin: 30px auto 60px;
+  padding: 0 20px;
+  text-align: center;
+}
+
+/* Caixa de texto para seções */
+.content-section {
+  background: white;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  border-radius: 12px;
+  padding: 30px 35px;
+  margin-bottom: 40px;
+  line-height: 1.6;
+  display: none; /* escondido por padrão */
+}
+
+/* Ativa a seção visível */
+.content-section.active {
+  display: block;
+}
+
+/* Títulos das seções */
+.content-section h2 {
+  font-family: 'Merriweather', serif;
+  color: #1e3a5f;
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 2rem;
+  border-bottom: 3px solid #4a6fa5;
+  padding-bottom: 10px;
+}
+
+/* Imagem do esqueleto */
+.image-container {
+  text-align: center;
+  margin-top: 10px;
+  padding: 20px;
+  max-width: 350px;
+  text-align: center;
+  margin: auto;
+}
+
+.image-container img {
+  max-width: 100%;
+  border-radius: 10px;
+  border: 3px solid #1e3a5f;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.image-caption {
+  margin-top: 12px;
+  font-style: italic;
+  color: #555;
+  font-size: 1rem;
+}
+
+.image-container-dois {
+max-width: 100%;
+  border-radius: 10px;
+  border: 3px solid #1e3a5f;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  margin: auto;
+  text-align: center;
+  font-style: italic;
+}
+
+.image-caption-dois {
+text-align: center;
+  margin-top: 10px;
+  padding: 20px;
+  max-width: 350px;
+  text-align: center;
+  margin: auto;
+}
+
+.segundo-texto {
+  max-width: 900px;
+  margin: 30px auto 60px;
+  padding: 0 20px;
+  text-align: center;
+}
+
+/* Listas estilizadas */
+ul {
+  padding-left: 20px;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+ul li {
+  margin-bottom: 12px;
+}
+
+/* Rodapé */
+footer {
+  background-color: #1e3a5f;
+  color: #a8c0e6;
+  padding: 25px 20px;
+  text-align: center;
+  font-size: 0.9rem;
+  font-family: 'Roboto', sans-serif;
+  box-shadow: inset 0 5px 15px rgba(255,255,255,0.1);
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  margin-top: 40px;
+}
+
+footer a {
+  color: #a8c0e6;
+  text-decoration: underline;
+}
+
+footer a:hover {
+  color: #fff;
+}
+
+/* Responsividade simples */
+@media (max-width: 600px) {
+  nav ul {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 15px 20px;
+  }
+
+  header h1 {
+    font-size: 1.5rem;
+  }
+
+  main {
+    padding: 0 10px;
+  }
+}
