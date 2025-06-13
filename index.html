@@ -3,13 +3,244 @@
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sistema Ósseo - BioSistema Ósseo</title>
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Merriweather&display=swap"
     rel="stylesheet" />
-  <!-- Link para o CSS externo -->
-  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* Reset básico */
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #f5faf6;
+      color: #222;
+      margin: 0;
+      padding-top: 300px;
+      /* altura suficiente para o header */
+    }
+
+    /* Cabeçalho fixo */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: #1e3a5f;
+      color: white;
+      padding: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    header h1 {
+      font-family: 'Merriweather', serif;
+      font-weight: 100;
+      margin: 0;
+      font-size: 1rem;
+    }
+
+    header .group-name {
+      font-style: italic;
+      font-size: 1rem;
+      opacity: 0.8;
+      margin-left: 15px;
+    }
+
+    /* Navegação principal */
+    nav {
+      margin-top: 10px;
+      width: 100%;
+      text-align: center;
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0 auto;
+      max-width: 700px;
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      flex-wrap: wrap;
+    }
+
+    nav ul li {
+      cursor: pointer;
+      font-weight: 600;
+      padding: 8px 15px;
+      border-radius: 6px;
+      transition: background-color 0.3s, color 0.3s;
+      color: #a8c0e6;
+    }
+
+    nav ul li.active,
+    nav ul li:hover {
+      background-color: #4a6fa5;
+      color: #fff;
+    }
+
+    /* Conteúdo principal */
+    main {
+      max-width: 900px;
+      margin: 30px auto 60px;
+      padding: 0 20px;
+    }
+
+    /* Caixa de texto para seções */
+    .content-section {
+      background: white;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      border-radius: 12px;
+      padding: 30px 35px;
+      margin-bottom: 40px;
+      line-height: 1.6;
+      display: none;
+      /* escondido por padrão */
+    }
+
+    /* Ativa a seção visível */
+    .content-section.active {
+      display: block;
+    }
+
+    /* Títulos das seções */
+    .content-section h2 {
+      font-family: 'Merriweather', serif;
+      color: #1e3a5f;
+      margin-top: 0;
+      margin-bottom: 20px;
+      font-size: 2rem;
+      border-bottom: 3px solid #4a6fa5;
+      padding-bottom: 10px;
+    }
+
+    /* Imagem do esqueleto */
+    .image-container {
+      text-align: center;
+      margin-top: 10px;
+      padding: 20px;
+      max-width: 350px;
+      text-align: center;
+      margin: auto;
+    }
+
+    .image-container img {
+      max-width: 100%;
+      border-radius: 10px;
+      border: 3px solid #1e3a5f;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .image-caption {
+      margin-top: 12px;
+      font-style: italic;
+      color: #555;
+      font-size: 1rem;
+    }
+
+    .image-container-dois {
+      max-width: 100%;
+      border-radius: 10px;
+      border: 3px solid #1e3a5f;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      margin: auto;
+      text-align: center;
+      font-style: italic;
+    }
+
+    .image-caption-dois {
+      text-align: center;
+      margin-top: 10px;
+      padding: 20px;
+      max-width: 350px;
+      text-align: center;
+      margin: auto;
+    }
+
+    .segundo-texto {
+      max-width: 900px;
+      margin: 30px auto 60px;
+      padding: 0 20px;
+      text-align: center;
+    }
+
+    /* Listas estilizadas */
+    ul {
+      padding-left: 20px;
+      font-size: 1.1rem;
+      color: #333;
+    }
+
+    ul li {
+      margin-bottom: 12px;
+    }
+
+    /* Rodapé */
+    footer {
+      background-color: #1e3a5f;
+      color: #a8c0e6;
+      padding: 25px 20px;
+      text-align: center;
+      font-size: 0.9rem;
+      font-family: 'Roboto', sans-serif;
+      box-shadow: inset 0 5px 15px rgba(255, 255, 255, 0.1);
+      position: relative;
+      bottom: 0;
+      width: 100%;
+      margin-top: 40px;
+    }
+
+    footer a {
+      color: #a8c0e6;
+      text-decoration: underline;
+    }
+
+    footer a:hover {
+      color: #fff;
+    }
+
+    /* Responsividade simples */
+    @media (max-width: 600px) {
+      body {
+        padding-top: 250px;
+      }
+
+      nav ul {
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 15px 20px;
+      }
+
+      header h1 {
+        font-size: 1.5rem;
+      }
+
+      main {
+        padding: 0 10px;
+      }
+
+      .content-section {
+        padding: 20px;
+      }
+
+      .content-section h2 {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
 </head>
 
 <body>
@@ -22,19 +253,20 @@
       <ul id="navTabs">
         <li class="active" data-tab="funcao">Introdução</li>
         <li data-tab="estruturas">Estruturas</li>
-        <li data-tab="curiosidades">Curiosidades e Doenças</li>
+        <li data-tab="curiosidades">Curiosidades</li>
         <li data-tab="interacoes">Crânio</li>
         <li data-tab="referencias">Torax</li>
-        <li data-tab="coluna-vertebral">Coluna Vertebral</li>
-        <li data-tab="membro-superiores">Membro Superiores</li>
-        <li data-tab="membro-inferiores">Membro Inferiores</li>
-        <li data-tab="meluda-ossea">Medula Ósessea</li>
+        <li data-tab="coluna-vertebral">Coluna</li>
+        <li data-tab="membro-superiores">Membros Sup.</li>
+        <li data-tab="membro-inferiores">Membros Inf.</li>
+        <li data-tab="medula-ossea">Medula</li>
         <li data-tab="bibliografia">Bibliográfia</li>
       </ul>
     </nav>
   </header>
 
   <main>
+    <!-- Todas as seções de conteúdo -->
     <section id="funcao" class="content-section active">
       <h2>O que é o Sistema Ósseo?</h2>
       <p>Olá! É um prazer tê-lo aqui em nosso site!
@@ -51,8 +283,6 @@
         impressionante, não acha? As principais funções desse sistema incluem: fornecer suporte, oferecer proteção,
         possibilitar movimento, gerar células sanguíneas e armazenar minerais. <b>Embora sua aparência possa parecer
           simples, os ossos são um tecido vivo, complexo e dinâmico, que iremos explorar juntos aqui neste site.</b></p>
-
-
     </section>
 
     <section id="estruturas" class="content-section">
@@ -92,21 +322,46 @@
         <img src="img/divisao-esqueleto.jpg"
           alt="Divisão do sistema esquelético, axial e apendecular. Nomenclatura dos ossos" />
         <p class="image-caption-dois">Divisão do sistema esquelético, axial e apendecular. Nomenclatura dos ossos</p>
-
-        </p>
       </div>
-
     </section>
 
     <section id="curiosidades" class="content-section">
-      <h2>Curiosidades, Doenças Comuns e Como Cuidar</h2>
-      <ul>
-        <li>O osso mais forte do corpo humano é o fêmur.</li>
-        <li>A osteoporose é uma doença que enfraquece os ossos e aumenta o risco de fraturas.</li>
-        <li>Manter uma alimentação rica em cálcio e praticar exercícios físicos ajuda na saúde óssea.</li>
-      </ul>
-    </section>
+      <h2>Curiosidades</h2>
+      <p>Você tinha conhecimento de que os ossos são uma das últimas partes do organismo a se deteriorar após a morte?
+        Isso ocorre porque, em sua maior parte, eles são formados por minerais, como o fosfato de cálcio, que criam uma
+        estrutura conhecida como hidroxiapatita, a qual é extremamente resistente. Ao contrário dos tecidos moles, que
+        contêm alta quantidade de água e proteínas e se decompõem rapidamente devido à ação de bactérias e fungos, os
+        ossos apresentam muito menos material orgânico e são considerablemente mais difíceis de serem destruídos por
+        esses agentes.
 
+        Além disso, devido à sua densidade e dureza, os ossos atuam como uma verdadeira barreira física contra a
+        decomposição. No entanto, ao longo de décadas ou até séculos, eles também são afetados, principalmente por
+        influências ambientais como a acidez do solo. Por essa razão, encontramos fósseis de milhões de anos… os ossos
+        realmente são os grandes sobreviventes do tempo.</p>
+      <p><b>Curiosidade viva sobre o sistema esquelético:</b></p>Embora a gente pense que os ossos são "duros e
+      fixos", o tecido ósseo é um dos tecidos mais metabolicamente ativos do corpo.
+      Por exemplo:
+      A cada 7 a 10 anos, praticamente TODO o seu esqueleto é renovado. Isso porque existe um ciclo contínuo de
+      reabsorção (feito pelos osteoclastos) e formação de osso novo (feito pelos osteoblastos).
+      Ou seja:
+      Você já teve vários "esqueletos" diferentes desde que nasceu — e está agora habitando uma versão renovada de si
+      mesma.<br>
+      <p><b>Fontes confiáveis para a informação da renovação óssea:</b></p>
+      Hall, J. E. (2015). Guyton and Hall
+      Textbook of Medical Physiology (13th ed.).
+      Elsevier.
+      * Esse clássico da fisiologia explica o processo de remodelação óssea contínua, destacando o ciclo entre
+      osteoblastos (formadores) e osteoclastos (reabsorvedores).
+      * O tempo médio de renovação do esqueleto inteiro varia entre 7 a 10 anos, dependendo da idade, sexo e fatores
+      hormonais.<br>
+
+      Rosen, C. J. (2009). "The Epidemiology
+      and Pathogenesis of Osteoporosis". In:
+      Endotext [Internet]. South Dartmouth (MA):
+      MDText.com, Inc.
+      * No contexto da osteoporose, a obra detalha o turnover ósseo e o equilíbrio entre formação e reabsorção.
+
+    </section>
     <section id="interacoes" class="content-section">
       <h2>O Nosso Capacete Natural</h2>
       <p>
@@ -168,7 +423,8 @@
         aos ossos da cintura escapular.<br><br>
 
         <strong>ELEMENTOS DA CAIXA TORÁCICA:</strong><br>
-        <b>Esterno:</b> é um osso longo e achatado, situado no meio da frente da caixa torácica e dividido em três partes: a
+        <b>Esterno:</b> é um osso longo e achatado, situado no meio da frente da caixa torácica e dividido em três
+        partes: a
         parte superior é o manúbrio do esterno, a seção média e maior é o corpo do esterno, e a parte inferior e menor é
         chamada de processo xifóide.<br>
         <b>Costelas:</b> A estrutura torácica é composta por doze pares de costelas que formam os lados da cavidade
@@ -195,69 +451,319 @@
         desconforto.<br>
         - A caixa torácica, juntamente com a laringe e a boca, funciona como uma câmara de ressonância, contribuindo
         para a produção e projeção da voz. É por isso que cantores e atores praticam a respiração torácica para
-        aprimorar suas performances vocais.<br></p>
+        aprimorar suas performances vocais.<br>
+      </p>
     </section>
     <section id="coluna-vertebral" class="content-section">
-      <h2>qaaaaaaaaaaaa</h2>
-      <p>aaaaaaaaaa</p>
+      <h2>Estrutura Essencial</h2>
+      <p>A coluna vertebral, que também pode ser referida como espinha dorsal ou espinhaço, representa uma estrutura
+        crucial no corpo humano. Ela é constituída por 26 ossos e 33 vértebras organizadas em grupos: sete cervicais,
+        doze torácicas, cinco lombares, cinco sacrais e quatro coccígeas. Esta configuração resulta em uma coluna que é
+        ao mesmo tempo robusta e flexível, permitindo uma ampla gama de movimentos, incluindo inclinações para frente e
+        para trás, em direções laterais e também rotações. Além de facilitar esses movimentos, a coluna vertebral
+        desempenha funções vitais, como a proteção da medula espinhal, o suporte da cabeça, a fixação das costelas e
+        músculos que compõem as costas, além de servir como a base dos membros inferiores.<br><br>
+
+        As curvaturas naturais presentes na coluna têm um significado fundamental. As seções cervical e lombar
+        apresentam curvaturas convexas, que se projetam para a frente, enquanto as regiões torácica e sacral possuem
+        curvaturas côncavas, apresentando levezas reentrantes. Durante a gestação, a coluna do feto tem uma única
+        curvatura côncava. Essas curvaturas são essenciais para aumentar a resistência da coluna, melhorar o equilíbrio
+        na postura ereta, absorver choques e proteger as vértebras de fraturas.<br><br>
+
+        A saúde da coluna e dos ossos, de maneira geral, também depende da vitamina D. Esta vitamina é indispensável
+        para a absorção de cálcio e fósforo no intestino, contribui para a manutenção dos níveis apropriados de cálcio
+        no sangue e ajuda a prevenir problemas como o raquitismo na infância, além de osteomalacia e osteoporose na fase
+        adulta.</p>
+      <h3>Curiosidades</h3>
+      Entre as peculiaridades da anatomia, merece destaque a primeira vértebra cervical, conhecida como atlas. Essa
+      vértebra é singular, pois não apresenta corpo ou apófise espinhosa. Sua articulação direta com o osso occipital do
+      crânio permite que a cabeça realize o movimento de “sim”, ao permitir o movimento de elevação e descida.<br><br>
+
+      Por outro lado, o sacro, composto por cinco vértebras fundidas, apresenta-se com um formato triangular e exerce a
+      função de uma base robusta para os membros inferiores, estabelecendo a conexão entre a coluna e a pelve.<br><br>
+
+      Para garantir a proteção, a mobilidade e a estabilidade da coluna vertebral, é essencial que tenhamos músculos
+      fortes e flexíveis. Dessa maneira, conseguimos manter uma postura adequada e evitar lesões.
     </section>
     <section id="membro-superiores" class="content-section">
-      <h2>Torax</h2>
-      <ul>
-        <li>MARQUES, José. Anatomia Humana. 3ª edição. São Paulo: Editora Saúde, 2020.</li>
-        <li>BRASIL. Ministério da Saúde. Sistema Ósseo: funcionamento e cuidados. Disponível em: <a
-            href="https://www.saude.gov.br" target="_blank" rel="noopener noreferrer">https://www.saude.gov.br</a>
-        </li>
-        <li>SOUSA, Ana. Fisiologia Humana. Editora Ciência, 2018.</li>
-      </ul>
+      <h2>Manipuladores Naturais</h2>
+      <p>
+        Os membros superiores do ser humano consistem em uma variedade de ossos e
+        articulações que, em conjunto, oferecem uma ampla diversidade de movimentos e alta precisão em seus gestos. O
+        osso principal no braço é o úmero, que se estende do ombro até o cotovelo. No antebraço, existem dois ossos: o
+        rádio, que fica do lado do polegar, e a ulna, posicionada do lado do dedo mínimo. Esses dois ossos operam em
+        união para possibilitar, entre outras funções, a rotação do antebraço — como quando se move a palma da mão para
+        cima ou para baixo.<br><br>
+
+        No punho, encontramos um grupo de oito pequenos ossos conhecidos como ossos do carpo, organizados em duas
+        fileiras. A fileira que está mais próxima do antebraço contém o escafoide, semilunar, piramidal e pisiforme,
+        enquanto a fileira que fica mais próxima da mão é composta por trapézio, trapezoide, capitato e hamato.
+        Prosseguindo em direção à mão, vemos os metacarpos, que formam a palma e conectam o punho aos dedos. Os dedos
+        são, por sua vez, formados por falanges: cada dedo tem três falanges — proximal, média e distal — exceto o
+        polegar, que conta com apenas duas.<br><br>
+
+        As articulações que unem esses ossos também desempenham um papel crucial na mobilidade. O ombro, por exemplo, é
+        constituído pela conexão da escápula com o úmero, permitindo uma gama de movimentos como flexão, extensão,
+        rotação e elevação do braço. O cotovelo liga o úmero ao rádio e à ulna, possibilitando a flexão e a extensão do
+        antebraço, além de permitir certa rotação. O punho é a articulação que liga o rádio, a ulna e os ossos do carpo,
+        sendo responsável pelos movimentos de flexão e extensão da mão, além dos desvios laterais.<br><br>
+      </p>
+      <p>
+        <strong>Curiosidades:</strong><br><br>
+
+        - Mesmo sendo dolorosas, as quebras no úmero, rádio e ulna tendem a se curar de forma eficaz, já que têm um bom
+        suprimento de sangue, o que auxilia na recuperação dos ossos.<br><br>
+
+        - A quebra do rádio distal (próximo ao punho) é a mais frequente entre todas as lesões do membro superior.
+        Normalmente, acontece quando uma pessoa cai de mãos abertas sobre o chão. Essa lesão é conhecida como fratura de
+        Colles.
+      </p>
     </section>
     <section id="membro-inferiores" class="content-section">
       <h2>Mecanismo de Suporte</h2>
+      <p>Os membros inferiores têm funções fundamentais no corpo humano, sendo responsáveis pela locomoção, suporte e
+        manutenção do equilíbrio. A articulação mais importante nesta área é o joelho, que possibilita ampla
+        mobilidade.<br><br>
+
+        A composição óssea dos membros inferiores abrange vários componentes. A cintura pélvica, que é formada pelo
+        ílio, ísquio e púbis, une os membros inferiores à estrutura axial do esqueleto, proporcionando estabilidade e
+        possibilitando a distribuição do peso corporal. Na parte da coxa, está o fêmur, o osso mais longo do corpo
+        humano, que em indivíduos altos pode atingir até 50 cm. A perna é composta pela tíbia e pela fíbula, enquanto a
+        patela, um osso sesamoide, protege o joelho, funcionando como uma "cobertura" para a articulação. Na área do
+        calcanhar, localizam-se os ossos do tarso, e o pé é formado pelos metatarsos e falanges, que constituem os
+        dedos.<br><br>
+
+        Entre as várias condições que podem afetar os membros inferiores, a osteoporose é notável, pois é uma
+        enfermidade que enfraquece os ossos, aumentando o risco de fraturas, especialmente nesta parte do corpo que é
+        muito exigida.<br><br>
+      </p>
       <p>
-        
+        <strong>Curiosidades</strong><br><br>
+
+        Os pés contêm mais de 25% dos ossos do corpo<br>
+        • Para cada pé há 26 ossos, somando 52 ossos em ambos os pés — isso representa mais de um quarto de todos os
+        ossos no corpo humano (que possui um total de 206). Essa estrutura elaborada é fundamental para o equilíbrio, a
+        absorção de choques e a adaptação à superfícies variadas.<br><br>
+
+        Você "se movimenta" com o cérebro antes de vir ao mundo<br>
+        • Fetos já apresentam movimentos sincronizados das pernas dentro do útero, mesmo antes de nascer. O padrão
+        básico de locomoção (andar) está registrado na medula espinhal, além de no cérebro, o que explica como os
+        recém-nascidos conseguem mostrar o "reflexo de marcha" logo ao chegarem ao mundo.
       </p>
     </section>
-    <section id="meluda-ossea" class="content-section">
-      <h2>Torax</h2>
+    <section id="medula-ossea" class="content-section">
+      <h2>Medula Esperança</h2>
+      <p>
+        A <b>medula óssea</b> é um tecido com estrutura esponjosa situado no interior dos ossos longos e chatos,
+        desempenhando
+        um papel central na hematopoiese, que é o processo de formação das células sanguíneas. Ela é dividida em duas
+        categorias:<br><br>
+
+        • Medula óssea vermelha: ativa e encarregada da produção de células.<br><br>
+
+        • Medula óssea amarela: inativa, com predominantemente gordura e função de armazenar reservas.
+      </p>
+      <p><b>Localização:</b><br><b>A medula vermelha</b> é mais abundante em ossos como o esterno, costelas, vértebras,
+        pelve e
+        nas extremidades dos ossos longos.<br><br>
+
+        A <b>medula amarela</b> é majoritária na diáfise dos ossos longos em adultos.<br><br>
+
+        Em recém-nascidos, a medula é completamente vermelha. À medida que a criança cresce, parte desse tecido é
+        gradualmente substituída por tecido adiposo.<br><br>
+
+        • Hematopoiese:<br> A Produção de Sangue
+        Este tecido é o ponto de partida das principais células do sangue, que incluem:<br><br>
+
+        • Eritrócitos (hemácias)<br><br>
+
+        • Leucócitos (glóbulos brancos)<br><br>
+
+        • Plaquetas<br><br>
+
+        Esse processo é controlado por fatores de crescimento, como a eritropoetina, e realizado por células-tronco
+        hematopoiéticas multipotentes, que têm a capacidade de gerar todos os tipos de células sanguíneas.</p>
+
+      <p><b>Funções da Medula Óssea:</b><br><br>Além de ser responsável pela formação de células sanguíneas, a medula
+        óssea desempenha papéis essenciais no corpo:<br><br>
+
+        • Armazenamento de ferro<br><br>
+
+        • Atuação importante no sistema imunológico<br><br>
+
+        • Fonte de células-tronco para transplantes e terapias hematológicas<br><br>
+
+      </p>
+
+      <p><b>Doenças Associadas:</b><br><br>
+        Mudanças na medula óssea podem resultar em condições clínicas sérias, tais como:<br><br>
+
+        • Leucemias - aumento anormal de leucócitos<br><br>
+
+        • Anemias aplásticas - falha na formação celular<br><br>
+
+        • Mieloma múltiplo - câncer maligno das células plasmáticas<br><br>
+
+        • Mielofibrose - infiltração do tecido medular por tecido fibroso<br><br>
+
+        • Metástases ósseas - invasão de células cancerígenas, frequente em cânceres de mama, próstata, pulmão, rim e
+        tireoide<br><br>
+      </p><b>Doação de Medula Óssea:</b><br><br>A doação de medula óssea representa uma opção terapêutica valiosa
+      para várias condições hematológicas graves.<br> O procedimento envolve a extração de células-tronco
+      hematopoiéticas do
+      doador para serem transplantadas em um paciente compatível.<br><br>
+
+      Quem pode ser doador?:<br>
+      • Ter entre 18 e 35 anos (para se cadastrar)<br><br>
+
+      • Estar em boa saúde geral<br><br>
+
+      • Não ter doenças infecciosas, autoimunes ou câncer<br><br>
+
+      •Estar disposto a ajudar qualquer paciente compatível<br><br>
+
+      <b>Como se registrar?:</b><br><br>
+      No Brasil, o registro é feito em hemocentros associados ao REDOME (Registro Nacional de Doadores de Medula
+      Óssea).<br>
+      O processo inclui:<br><br>
+
+      • Coleta de uma amostra de sangue (5 a 10 mL) para a análise do HLA (antígeno leucocitário humano)<br><br>
+
+      • Inserção das informações no sistema nacional<br><br>
+
+      • Se houver compatibilidade com um paciente, o doador será contactado<br><br>
+
+      <b>Fato importante:</b><br>
+      A saúde do doador não é comprometida, e a medula óssea consegue se regenerar completamente em algumas
+      semanas.<br><br>
+
+      <b>Considerações finais:</b><br>
+      A medula óssea desempenha um papel crucial no corpo humano, sendo encarregada da geração constante de células do
+      sangue e do apoio ao sistema imunológico. Investigar e entender esse componente é vital tanto para a medicina
+      clínica quanto para a científica. Qualquer alteração em sua atividade pode levar a condições graves, o que torna a
+      preservação da medula e a promoção da doação ainda mais essenciais.
+      <p><b>Curiosidades:</b><br>
+        Transplante salvou a vida do primeiro paciente curado de HIV
+        O chamado “Paciente de Berlim” foi curado do HIV após receber um transplante de medula óssea de um doador com
+        uma mutação genética rara (CCR5-Δ32) que confere resistência ao vírus.
+      </p>
       <ul>
-        <li>MARQUES, José. Anatomia Humana. 3ª edição. São Paulo: Editora Saúde, 2020.</li>
-        <li>BRASIL. Ministério da Saúde. Sistema Ósseo: funcionamento e cuidados. Disponível em: <a
-            href="https://www.saude.gov.br" target="_blank" rel="noopener noreferrer">https://www.saude.gov.br</a>
         </li>
-        <li>SOUSA, Ana. Fisiologia Humana. Editora Ciência, 2018.</li>
+        <li>O “Paciente de Berlim” a história do primeiro homem a vencer a Aids<br><a
+            href="https://www.ufpb.br/saehu/contents/noticias/a-historia-do-primeiro-homem-a-vencer-a-aids"
+            target="_blank" rel="noopener noreferrer">https://www.saude.gov.br</a>
+        </li>
+        <li>Quem passa por Timothy Ray Brown jamais imagina que ele é a primeira pessoa na história a ter sido curada da
+          Aids.
+        </li>
       </ul>
+
     </section>
     <section id="bibliografia" class="content-section">
-      <h2>Torax</h2>
+      <h2>Vídeo</h2>
       <ul>
-        <li>MARQUES, José. Anatomia Humana. 3ª edição. São Paulo: Editora Saúde, 2020.</li>
-        <li>BRASIL. Ministério da Saúde. Sistema Ósseo: funcionamento e cuidados. Disponível em: <a
-            href="https://www.saude.gov.br" target="_blank" rel="noopener noreferrer">https://www.saude.gov.br</a>
+        <li>
+          <a href="https://www.youtube.com/watch?v=bd3gz06D3wI" target="_blank"
+            rel="noopener noreferrer">https://www.youtube.com/watch?v=bd3gz06D3wI</a>
+          <video width="600px" controls>
+            <source src="videos/A3 Biossistemas do Corpo Humano.mp4" type="video/mp4">
+          </video>
         </li>
-        <li>SOUSA, Ana. Fisiologia Humana. Editora Ciência, 2018.</li>
       </ul>
+
+      <h2>referencias</h2>
+      <p>REFERÊNCIAS:
+        https://arquivos.sistemas.ufg.br/arquivos/202223319009962372451c99bc71fb8bb/Sistema_Esqueltico.pdf<br><br>
+
+        https://sinproconhecer.sinprolondrina.com.br/wp-content/uploads/2018/04/anatomia-humana-introduc3a7c3a3o.pdf
+        PIRES, Gustavo Martins. Anatomía humana. 1978.<br><br>
+
+        https://www.academia.edu/download/55918873/APOSTILA_ANATOMIA_HUMANA.pdf
+        COSTA, Valéria Catelli Infantozzi. Anatomia geral humana. Ribeirão Preto, 2008.<br><br>
+
+        https://www.einstein.br/n/glossario-de-saude/osteoporose<br><br>
+
+        https://vidasaudavel.einstein.br/osteomielite-o-que-e-causas-sintomas-e-como-tratar/<br><br>
+        
+        https://drauziovarella.uol.com.br/doencas-e-sintomas/osteomielite/<br><br>
+
+
+      </p>
+
+      <h2>Ligados no Corpo:</h2>
+      <p><b>Membros:</b><br>
+        Denise leite<br>
+        Evelyn Lopes<br>
+        Jessica Castro<br>
+        Juliana Silva<br>
+        Kristine dos Santos<br>
+        Rafael Pavan<br>
+      </p>
     </section>
 
   </main>
 
+
+
+
+  <!-- Demais seções permanecem exatamente como estavam -->
+  <section id="interacoes" class="content-section">
+    <!-- Conteúdo do Crânio -->
+  </section>
+
+  <section id="referencias" class="content-section">
+    <!-- Conteúdo do Tórax -->
+  </section>
+
+  <section id="coluna-vertebral" class="content-section">
+    <!-- Conteúdo da Coluna Vertebral -->
+  </section>
+
+  <section id="membro-superiores" class="content-section">
+    <!-- Conteúdo dos Membros Superiores -->
+  </section>
+
+  <section id="membro-inferiores" class="content-section">
+    <!-- Conteúdo dos Membros Inferiores -->
+  </section>
+
+  <section id="medula-ossea" class="content-section">
+    <!-- Conteúdo da Medula Óssea -->
+  </section>
+
+  <section id="bibliografia" class="content-section">
+    <!-- Conteúdo da Bibliografia -->
+  </section>
+  </main>
+
   <footer>
-    © 2025 Grupo Biossistema Ósseo. Todos os direitos reservados.
+    ©️ 2025 Grupo Biossistema Ósseo. Todos os direitos reservados.
   </footer>
 
   <script>
     // Script para alternar abas
-    const tabs = document.querySelectorAll('#navTabs li');
-    const sections = document.querySelectorAll('.content-section');
+    document.addEventListener('DOMContentLoaded', function () {
+      const tabs = document.querySelectorAll('#navTabs li');
 
-    tabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        // Remove active de todos os tabs e seções
-        tabs.forEach(t => t.classList.remove('active'));
-        sections.forEach(s => s.classList.remove('active'));
+      tabs.forEach(tab => {
+        tab.addEventListener('click', function () {
+          // Remove a classe active de todas as abas e seções
+          document.querySelectorAll('#navTabs li').forEach(t => t.classList.remove('active'));
+          document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
 
-        // Ativa o tab clicado e a seção correspondente
-        tab.classList.add('active');
-        document.getElementById(tab.dataset.tab).classList.add('active');
+          // Adiciona a classe active à aba clicada
+          this.classList.add('active');
+
+          // Mostra a seção correspondente
+          const tabId = this.getAttribute('data-tab');
+          document.getElementById(tabId).classList.add('active');
+
+          // Rolagem suave para o topo da seção
+          window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+          });
+        });
       });
     });
   </script>
